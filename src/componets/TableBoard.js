@@ -1,69 +1,7 @@
 import React, { Component } from "react";
 import Papa from "papaparse";
 import csvFile from "./matches.csv";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import { Bar } from "react-chartjs-2";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
-const options = {
-  plugins: {
-    title: {
-      display: true,
-      text: "Chart.js Bar Chart - Stacked",
-    },
-  },
-  responsive: true,
-  scales: {
-    x: {
-      stacked: true,
-    },
-    y: {
-      stacked: true,
-    },
-  },
-};
-
-let labels = [
-  "Royal Challengers Bangalore",
-  "Delhi Daredevils",
-  "Sunrisers Hyderabad",
-];
-
-const data = {
-  labels,
-  datasets: [
-    {
-      label: "Dataset 1",
-      data: labels.map(() => [1, 2, 3, 4, 5, 6, -7]),
-      backgroundColor: "rgb(255, 99, 132)",
-    },
-    {
-      label: "Dataset 2",
-      data: labels.map(() => [1, 2, 3, 4, 5, -46, 7]),
-      backgroundColor: "rgb(75, 192, 192)",
-    },
-    {
-      label: "Dataset 3",
-      data: labels.map(() => [1, 2, 3, 4, 5, 6, -45457]),
-      backgroundColor: "rgb(53, 162, 235)",
-    },
-  ],
-};
 
 export class TableBoard extends Component {
   constructor() {
@@ -164,7 +102,6 @@ export class TableBoard extends Component {
             </tfoot>
           </table>
         </div>
-        <Bar options={options} data={data}></Bar>
       </div>
     );
   }

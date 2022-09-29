@@ -12,6 +12,7 @@ export class Hero extends Component {
         <div className="hero min-h-screen bg-base-200">
           <div className="hero-content flex-col lg:flex-row-reverse">
             <img
+              alt="img"
               src="https://placeimg.com/260/400/arch"
               className="max-w-sm rounded-lg shadow-2xl animate__animated animate__fadeInRight animate__delay-faster"
             />
@@ -22,7 +23,7 @@ export class Hero extends Component {
                 get to know about the stats in a click and back your die-hard
                 fanship in the game.
               </p>
-              <a href="/IPL/data">
+              <a href="/IPL/dashboard">
                 <button className="btn btn-primary">Get Started</button>
               </a>
             </div>
