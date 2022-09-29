@@ -65,7 +65,7 @@ const data = {
   ],
 };
 
-export class DataBoard extends Component {
+export class TableBoard extends Component {
   constructor() {
     super();
 
@@ -170,4 +170,4 @@ export class DataBoard extends Component {
   }
 }
 
-export default DataBoard;
+export default TableBoard;
