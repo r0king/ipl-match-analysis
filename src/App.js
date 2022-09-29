@@ -1,15 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
 import "animate.css/animate.min.css";
-import Card from './componets/Card';
 import Hero from './componets/Hero';
-function App() {
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import DataBoard from './componets/DataBoard';
+export default function App() {
   return (
-  
-  <div>
-    <Hero ></Hero>
-  </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="IPL/" >
+          <Route index element={<Hero />} />
+          <Route path="data" element={<DataBoard/>}/>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
