@@ -13,8 +13,8 @@ export default function App() {
     //   <Routes>
     //     <Route path="/" >
     <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <Routes>
-          <Route exact path="/" element={<Hero />} />
+        <Routes >
+          <Route path="/" element={<Hero />} />
           <Route path="/table" element={<TableBoard/>}/>
           <Route path="/s/:season" element={<Seasons/>}/>
           <Route path="/dashboard" element={<Databoard/>}/>
