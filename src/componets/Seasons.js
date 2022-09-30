@@ -2,73 +2,10 @@ import React, { Component } from "react";
 import Papa from "papaparse";
 import csvFile from "./matches.csv";
 import { useParams } from "react-router-dom";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import { Bar } from "react-chartjs-2";
-
 function withParams(Component) {
   return (props) => <Component {...props} params={useParams()} />;
 }
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
-const options = {
-  plugins: {
-    title: {
-      display: true,
-      text: "Chart.js Bar Chart - Stacked",
-    },
-  },
-  responsive: true,
-  scales: {
-    x: {
-      stacked: true,
-    },
-    y: {
-      stacked: true,
-    },
-  },
-};
-
-let labels = [
-  "Royal Challengers Bangalore",
-  "Delhi Daredevils",
-  "Sunrisers Hyderabad",
-];
-
-const data = {
-  labels,
-  datasets: [
-    {
-      label: "Dataset 1",
-      data: labels.map(() => [1, 2, 3, 4, 5, 6, -7]),
-      backgroundColor: "rgb(255, 99, 132)",
-    },
-    {
-      label: "Dataset 2",
-      data: labels.map(() => [1, 2, 3, 4, 5, -46, 7]),
-      backgroundColor: "rgb(75, 192, 192)",
-    },
-    {
-      label: "Dataset 3",
-      data: labels.map(() => [1, 2, 3, 4, 5, 6, -45457]),
-      backgroundColor: "rgb(53, 162, 235)",
-    },
-  ],
-};
 
 export class Seasons extends Component {
   constructor(props) {
@@ -99,37 +36,31 @@ export class Seasons extends Component {
           teams[team] = {};
           teams[team].matchs = [match];
           teamNames.push(team);
-          if (match.winner.localeCompare(team)) {
-            teams[team].wins = 1;
-          }
-          if (isNaN(teams[team].wins)) {
-            teams[team].wins = 1;
-          }
         } else {
           const team = match.team1;
           teams[team].matchs.push(match);
-          if (match.winner.localeCompare(team)) {
-            teams[team].wins = teams[team].wins + 1;
-          }
         }
         if (!(match.team2 in teams)) {
           const team = match.team2;
           teamNames.push(team);
           teams[team] = {};
           teams[team].matchs = [match];
-          if (match.winner.localeCompare(team)) {
-            teams[team].wins = 1;
-          }
-          if (isNaN(teams[team].wins)) {
-            teams[team].wins = 1;
-          }
         } else {
           const team = match.team2;
           teams[team].matchs.push(match);
-          if (match.winner.localeCompare(team)) {
-            teams[team].wins = teams[team].wins + 1;
-          }
         }
+        if (teams[match.winner].wins === undefined) {
+          teams[match.winner].wins = 1;
+        } else {
+          teams[match.winner].wins += 1;
+        }
+        if (match.result === 'tie'){
+
+          if (teams[match.winner].teamTies === undefined) {
+            teams[match.winner].teamTies = 1;
+          } else {
+            teams[match.winner].teamTies += 1;
+          }        }
       }
     });
     console.log(teams);
@@ -160,11 +91,13 @@ export class Seasons extends Component {
     let winns;
     let teamData;
     let teamMatchs;
+    let teamTies;
 
     if (this.state.selectedTeam !== "Filter By team") {
       console.log(this.state.teams[this.state.selectedTeam]);
       winns = this.state.teams[this.state.selectedTeam].wins;
       teamMatchs = this.state.teams[this.state.selectedTeam].matchs.length;
+      teamTies = this.state.teams[this.state.selectedTeam].teamTies;
       teamData = this.state.teams[this.state.selectedTeam].matchs.map(
         (match) => (
           <tbody key={match.id}>
@@ -212,13 +145,17 @@ export class Seasons extends Component {
         <div className="stats shadow flex justify-center">
           <div className="stat place-items-center">
             <div className="stat-title">Winns</div>
-            <div className="stat-value">{winns}</div>
+            <div className="stat-value">{winns ? winns:0}</div>
             {/* <div className="stat-desc">From January 1st to February 1st</div> */}
           </div>
 
           <div className="stat place-items-center">
             <div className="stat-title">Total Matchs</div>
-            <div className="stat-value text-secondary">{teamMatchs}</div>
+            <div className="stat-value text-secondary">{teamMatchs ? teamMatchs:0}</div>
+          </div>
+          <div className="stat">
+            <div className="stat-title">Ties</div>
+            <div className="stat-value">{teamTies ? teamTies:0}</div>
           </div>
 
           {/* <div className="stat place-items-center">

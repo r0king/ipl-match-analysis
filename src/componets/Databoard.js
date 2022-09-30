@@ -55,7 +55,7 @@ export class Databoard extends Component {
                 <h2 className="card-title">{season}</h2>
                 <p>number of matches {this.state.seasonsData[season]}</p>
                 <div className="card-actions justify-end">
-                  <a href={"/IPL/s/" + season}>
+                  <a href={`${process.env.PUBLIC_URL}/s/${season}`}>
                     <button className="btn btn-primary">Open Season</button>
                   </a>
                 </div>

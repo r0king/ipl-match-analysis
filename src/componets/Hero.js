@@ -23,7 +23,7 @@ export class Hero extends Component {
                 get to know about the stats in a click and back your die-hard
                 fanship in the game.
               </p>
-              <a href="/IPL/dashboard">
+              <a href={`${process.env.PUBLIC_URL}/dashboard`}>
                 <button className="btn btn-primary">Get Started</button>
               </a>
             </div>
