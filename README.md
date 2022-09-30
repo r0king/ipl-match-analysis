@@ -2,6 +2,15 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## libraries/frameworks 
+I have used React and tailwind to create an awsome and easy to understand UI and funtionalitites
+
+## Other features
+- mobile responsive 
+- offline usable (due to caching the website workes even offline)
+- optimized loading time (using hashmap to link and create team data )
+
+
 ## Available Scripts
 
 In the project directory, you can run:
