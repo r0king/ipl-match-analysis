@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 import "animate.css/animate.min.css";
-import Hero from './componets/Hero';
+import Hero from "./componets/Hero";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
-import TableBoard from './componets/TableBoard';
-import Databoard from './componets/Databoard';
-import Seasons from './componets/Seasons';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import TableBoard from "./componets/TableBoard";
+import Databoard from "./componets/Databoard";
+import Seasons from "./componets/Seasons";
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route basemname={`/${process.env.PUBLIC_URL}`} >
-          <Route index element={<Hero />} />
-          <Route path={`/${process.env.PUBLIC_URL}/table`} element={<TableBoard/>}/>
-          <Route path={`/${process.env.PUBLIC_URL}/dashboard`} element={<Databoard/>}/>
-          <Route path={`/${process.env.PUBLIC_URL}/s/:season`} element={<Seasons/>}/>
-        </Route>
-      </Routes>
+    // <HashRouter>
+    //   <Routes>
+    //     <Route path="/" >
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <Routes>
+          <Route exact path="/" element={<Hero />} />
+          <Route path="/table" element={<TableBoard/>}/>
+          <Route path="/s/:season" element={<Seasons/>}/>
+          <Route path="/dashboard" element={<Databoard/>}/>
+          {/* <Route path="*" element={<p>Path not resolved</p>}/> */}
+        </Routes>
     </BrowserRouter>
+    //     </Route>
+    //   </Routes>
+    // </HashRouter>
   );
 }
